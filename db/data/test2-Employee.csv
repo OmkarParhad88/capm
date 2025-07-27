@@ -1,0 +1,7 @@
+ID,firstName,lastName,designation,address,email,phone,businessUnit_ID,plant_ID
+EMP001,John,Doe,Commodity Manager,123 Main St,Detroit,john.doe@company.com,9876543210,1,1
+EMP002,Jane,Smith,Production Lead,456 Elm St,Chennai,jane.smith@company.com,8765432109,2,2
+EMP003,Raj,Patel,Quality Engineer,789 Oak St,Pune,raj.patel@company.com,7654321098,3,3
+EMP004,Emily,Chen,Design Engineer,321 Maple Ave,Detroit,emily.chen@company.com,6543210987,1,1
+EMP005,Michael,Brown,Production Supervisor,654 Pine St,Chennai,michael.brown@company.com,5432109876,2,2
+EMP006,Anita,Desai,Quality Analyst,987 Cedar Rd,Pune,anita.desai@company.com,4321098765,5,5
