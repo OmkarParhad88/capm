@@ -1,0 +1,25 @@
+<mvc:View controllerName="demoui5.controller.DemoView"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+		xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable">
+    <Page id="page" title="{i18n>title}">
+
+    <VBox fitContainer="true">
+			<smartFilterBar:SmartFilterBar id="smartFilterBar" entitySet="Commodities" persistencyKey="SmartFilter_Explored" >
+				<smartFilterBar:controlConfiguration>
+					
+				</smartFilterBar:controlConfiguration>
+				<smartFilterBar:layoutData>
+					<FlexItemData shrinkFactor="0"/>
+				</smartFilterBar:layoutData>
+			</smartFilterBar:SmartFilterBar>
+			<smartTable:SmartTable id="CommoditiesTable" entitySet="Commodities" smartFilterId="smartFilterBar" tableType="Table" enableExport="true" useVariantManagement="true" useTablePersonalisation="true" header="Commodities" showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true" class="sapUiResponsiveContentPadding" enableAutoColumnWidth="true" editTogglable="true" >
+				<smartTable:layoutData>
+					<FlexItemData growFactor="1" baseSize="0%"/>
+				</smartTable:layoutData>
+			</smartTable:SmartTable>
+		</VBox>
+
+    </Page>
+</mvc:View>
