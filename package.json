@@ -1,15 +1,16 @@
 {
-  "name": "testtt",
+  "name": "capm_ts",
   "version": "1.0.0",
   "description": "A simple CAP project.",
   "repository": "<Add your repository here>",
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
+    "@cap-js-community/odata-v2-adapter": "^1.15.2",
     "@dxfrontier/cds-ts-dispatcher": "^5.0.1",
     "@dxfrontier/cds-ts-repository": "^6.0.1",
-    "@sap/cds-dk": "^9.1.3",
     "@sap/cds": "9.1.0",
+    "@sap/cds-dk": "^9.1.3",
     "express": "^4"
   },
   "devDependencies": {
@@ -21,7 +22,7 @@
   },
   "scripts": {
     "start": "cds-serve",
-    "watch": "cds-tsx w"
+    "watch": "npx cds-tsx w"
   },
   "imports": {
     "#dispatcher": "./@dispatcher/index.js",
