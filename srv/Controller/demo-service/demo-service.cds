@@ -1,4 +1,4 @@
-using test2 as db from '../../../db/schema';
+  using test2 as db from '../../../db/schema';
 
 service DemoService {
   entity Commodities  as projection on db.Commodity;

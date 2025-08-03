@@ -25,6 +25,7 @@ entity Plant {
   name            : String(100);
   employees: Association to many Employee
                       on employees.plant = $self;
+  currency        : String(20);
 }
 
 entity Employee : managed {

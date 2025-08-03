@@ -18,9 +18,15 @@
     "outDir": "./gen/srv",
     "rootDir": ".",
     "paths": {
-      "#cds-models/*": ["./@cds-models/*", "./@cds-models/*/index.ts"]
+      "#cds-models/*": [
+        "./@cds-models/*",
+        "./@cds-models/*/index.ts"
+      ]
     },
     "sourceMap": true
   },
-  "include": ["./srv", "./@dispatcher"]
+  "include": [
+    "./srv",
+    "./@dispatcher"
+  ]
 }
