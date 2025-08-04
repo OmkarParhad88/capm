@@ -36,53 +36,53 @@ modules:
     requires:
       - name: capm_ts-db
 
-  - name: capm_ts
-    type: approuter.nodejs
-    path: app/router
-    parameters:
-      keep-existing-routes: true
-      disk-quota: 256M
-      memory: 256M
-    requires:
-      - name: srv-api
-        group: destinations
-        properties:
-          name: srv-api # must be used in xs-app.json as well
-          url: ~{srv-url}
-          forwardAuthToken: true
-      - name: capm_ts-destination
-      - name: capm_ts-html5-runtime
-    provides:
-      - name: app-api
-        properties:
-          app-protocol: ${protocol}
-          app-uri: ${default-uri}
+  # - name: capm_ts
+  #   type: approuter.nodejs
+  #   path: app/router
+  #   parameters:
+  #     keep-existing-routes: true
+  #     disk-quota: 256M
+  #     memory: 256M
+  #   requires:
+  #     - name: srv-api
+  #       group: destinations
+  #       properties:
+  #         name: srv-api # must be used in xs-app.json as well
+  #         url: ~{srv-url}
+  #         forwardAuthToken: true
+  #     - name: capm_ts-destination
+  #     - name: capm_ts-html5-runtime
+  #   provides:
+  #     - name: app-api
+  #       properties:
+  #         app-protocol: ${protocol}
+  #         app-uri: ${default-uri}
 
-  - name: capm_ts-app-deployer
-    type: com.sap.application.content
-    path: gen
-    requires:
-      - name: capm_ts-html5-repo-host
-        parameters:
-          content-target: true
-    build-parameters:
-      build-result: app/
-      requires:
-        - name: capm_tsdemo_ui5
-          artifacts:
-            - demo_ui5.zip
-          target-path: app/
+  # - name: capm_ts-app-deployer
+  #   type: com.sap.application.content
+  #   path: gen
+  #   requires:
+  #     - name: capm_ts-html5-repo-host
+  #       parameters:
+  #         content-target: true
+  #   build-parameters:
+  #     build-result: app/
+  #     requires:
+  #       - name: demo_ui5
+  #         artifacts:
+  #           - demo_ui5.zip
+  #         target-path: app/
 
-  - name: capm_tsdemo_ui5
-    type: html5
-    path: app/demo_ui5
-    build-parameters:
-      build-result: dist
-      builder: custom
-      commands:
-        - npm ci
-        - npm run build
-      supported-platforms: []
+  # - name: demo_ui5
+  #   type: html5
+  #   path: app/demo_ui5
+  #   build-parameters:
+  #     build-result: dist
+  #     builder: custom
+  #     commands:
+  #       - npm ci
+  #       - npm run build
+  #     supported-platforms: []
 
 resources:
   - name: capm_ts-db
@@ -117,14 +117,14 @@ resources:
                 Type: HTTP
                 ProxyType: Internet
 
-  - name: capm_ts-html5-repo-host
-    type: org.cloudfoundry.managed-service
-    parameters:
-      service: html5-apps-repo
-      service-plan: app-host
+  # - name: capm_ts-html5-repo-host
+  #   type: org.cloudfoundry.managed-service
+  #   parameters:
+  #     service: html5-apps-repo
+  #     service-plan: app-host
 
-  - name: capm_ts-html5-runtime
-    type: org.cloudfoundry.managed-service
-    parameters:
-      service: html5-apps-repo
-      service-plan: app-runtime
+  # - name: capm_ts-html5-runtime
+  #   type: org.cloudfoundry.managed-service
+  #   parameters:
+  #     service: html5-apps-repo
+  #     service-plan: app-runtime

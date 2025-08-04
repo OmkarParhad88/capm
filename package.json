@@ -7,6 +7,7 @@
   "private": true,
   "dependencies": {
     "@cap-js-community/odata-v2-adapter": "^1.15.2",
+    "@cap-js/hana": "^2.1.2",
     "@dxfrontier/cds-ts-dispatcher": "^5.0.1",
     "@dxfrontier/cds-ts-repository": "^6.0.1",
     "@sap-cloud-sdk/connectivity": "^4.1.1",
@@ -31,14 +32,16 @@
     "build:mta": "mbt build",
     "build:deploy": "mbt build && cf deploy mta_archives/capm_ts_1.0.0.mtar",
     "watch-book_shop1": "cds watch --open bookshop1/index.html?sap-ui-xx-viewCache=false --livereload false",
-    "undeploy": "cf undeploy invoflow --delete-services --delete-service-keys --delete-service-brokers",
+    "undeploy": "cf undeploy capm_ts --delete-services --delete-service-keys --delete-service-brokers",
     "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
     "watch": "npx cds-tsx w",
     "watch-demo_ui5": "cds watch --open demoui5/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "cds": {
-    
     "requires": {
+      "auth": {
+        "kind": "mocked"
+      },
       "destinations": true,
       "html5-runtime": true,
       "db": {
@@ -49,13 +52,13 @@
           "kind": "hana"
         }
       },
-      "API_BUSINESS_PARTNER": {
+      "DEMO": {
         "kind": "odata",
-        "model": "srv/external/API_BUSINESS_PARTNER",
+        "model": "srv/external/DEMO",
         "[production]": {
           "credentials": {
-            "destination": "S4HANA",
-            "path": "/sap/opu/odata/sap/API_BUSINESS_PARTNER"
+            "destination": "invoflow_capm_srv",
+            "path": "/odata/v4/demo/"
           }
         }
       }
