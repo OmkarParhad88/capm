@@ -52,13 +52,13 @@
           "kind": "hana"
         }
       },
-      "DEMO": {
-        "kind": "odata",
-        "model": "srv/external/DEMO",
+      "Admin": {
+        "kind": "odata-v2",
+        "model": "srv/external/admin",
         "[production]": {
           "credentials": {
             "destination": "invoflow_capm_srv",
-            "path": "/odata/v4/demo/"
+            "path": "/odata/v2/admin/"
           }
         }
       }
