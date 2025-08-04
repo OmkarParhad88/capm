@@ -20,18 +20,27 @@
     "@cap-js/cds-typer": ">=0.1",
     "@cap-js/cds-types": "^0.10.0",
     "@cap-js/sqlite": "^2.0.2",
+    "@sap/cds-dk": ">=8",
     "@types/node": "^22.0.0",
     "cds-plugin-ui5": "^0.13.0",
     "typescript": "^5"
   },
   "scripts": {
     "start": "cds-serve",
+    "build": "cds build",
+    "build:mta": "mbt build",
+    "build:deploy": "mbt build && cf deploy mta_archives/capm_ts_1.0.0.mtar",
+    "watch-book_shop1": "cds watch --open bookshop1/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "undeploy": "cf undeploy invoflow --delete-services --delete-service-keys --delete-service-brokers",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
     "watch": "npx cds-tsx w",
     "watch-demo_ui5": "cds watch --open demoui5/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "cds": {
-    "plugins": [],
+    
     "requires": {
+      "destinations": true,
+      "html5-runtime": true,
       "db": {
         "[development]": {
           "kind": "sqlite"

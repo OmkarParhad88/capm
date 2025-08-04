@@ -12,11 +12,13 @@ target/
 # Web IDE, App Studio
 .che/
 .gen/
+app/demo_ui5/dist/
 
 # MTA
 *_mta_build_tmp
 *.mtar
 mta_archives/
+
 
 # Other
 .DS_Store
@@ -34,5 +36,3 @@ mta_archives/
 @cds-models
 
 @dispatcher
-
-@cds-models
