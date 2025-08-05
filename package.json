@@ -40,7 +40,6 @@
   "cds": {
     "plugins": [],
     "requires": {
-
       "auth": {
         "kind": "mocked"
       },
@@ -54,21 +53,32 @@
           "kind": "hana"
         }
       },
+      "AdminService": {
+        "kind": "odata",
+        "model": "srv/external/AdminService",
+        "[development]": {
+          "credentials": {
+            "destination": "invoflow_capm_srv"
+          }
+        },
+        "[production]": {
+          "credentials": {
+            "destination": "invoflow_capm_srv"
+          }
+        }
+      },
       "NorthWind": {
-				"kind": "odata",
-				"model": "srv/external/NorthWind.csn",
-				
-					"credentials": {
-						"url": "https://services.odata.org/Experimental/OData/OData.svc"
-					},
-				
-				"[production]": {
-					"credentials": {
-						"destination": "NorthWind"
-					}
-				}
-			}
-      
+        "kind": "odata",
+        "model": "srv/external/NorthWind",
+        "credentials": {
+          "url": "https://services.odata.org/Experimental/OData/OData.svc"
+        },
+        "[production]": {
+          "credentials": {
+            "destination": "NorthWind"
+          }
+        }
+      }
     }
   },
   "imports": {
