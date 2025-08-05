@@ -38,7 +38,9 @@
     "watch-demo_ui5": "cds watch --open demoui5/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "cds": {
+    "plugins": [],
     "requires": {
+
       "auth": {
         "kind": "mocked"
       },
@@ -52,16 +54,21 @@
           "kind": "hana"
         }
       },
-      "Admin": {
-        "kind": "odata-v2",
-        "model": "srv/external/admin",
-        "[production]": {
-          "credentials": {
-            "destination": "invoflow_capm_srv",
-            "path": "/odata/v2/admin/"
-          }
-        }
-      }
+      "NorthWind": {
+				"kind": "odata",
+				"model": "srv/external/NorthWind.csn",
+				
+					"credentials": {
+						"url": "https://services.odata.org/Experimental/OData/OData.svc"
+					},
+				
+				"[production]": {
+					"credentials": {
+						"destination": "NorthWind"
+					}
+				}
+			}
+      
     }
   },
   "imports": {

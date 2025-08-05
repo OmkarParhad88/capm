@@ -3,6 +3,7 @@ import {
   AfterRead,
   EntityHandler,
   Inject,
+  OnRead,
 } from '@dxfrontier/cds-ts-dispatcher';
 
 import { Commodities } from '#cds-models/DemoService';
