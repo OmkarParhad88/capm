@@ -1,0 +1,124 @@
+{
+ "meta": {
+  "creator": "cds-dk 9.2.0"
+ },
+ "$version": "2.0",
+ "definitions": {
+  "AdminService": {
+   "kind": "service",
+   "@cds.external": true,
+   "@m.IsDefaultEntityContainer": "true"
+  },
+  "AdminService.books": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "ID": {
+     "key": true,
+     "type": "cds.UUID",
+     "notNull": true
+    },
+    "title": {
+     "type": "cds.String",
+     "length": 255
+    },
+    "author_ID": {
+     "type": "cds.UUID"
+    },
+    "stock": {
+     "type": "cds.Integer"
+    },
+    "price_amount": {
+     "type": "cds.Decimal",
+     "@sap.variable.scale": "true"
+    },
+    "price_currency": {
+     "type": "cds.String",
+     "length": 3
+    },
+    "genre": {
+     "type": "cds.Integer"
+    },
+    "createdAt": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTimeOffset",
+     "@odata.Precision": 7
+    },
+    "createdBy": {
+     "type": "cds.String",
+     "length": 255
+    },
+    "modifyAt": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTimeOffset",
+     "@odata.Precision": 7
+    },
+    "modifyBy": {
+     "type": "cds.String",
+     "length": 255
+    },
+    "author": {
+     "type": "cds.Association",
+     "target": "AdminService.authors",
+     "keys": []
+    }
+   }
+  },
+  "AdminService.authors": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "ID": {
+     "key": true,
+     "type": "cds.UUID",
+     "notNull": true
+    },
+    "name": {
+     "type": "cds.LargeString"
+    },
+    "dateOfBirth": {
+     "type": "cds.Date",
+     "@sap.display.format": "Date"
+    },
+    "dateOfDeath": {
+     "type": "cds.Date",
+     "@sap.display.format": "Date"
+    },
+    "epc_ID": {
+     "type": "cds.Integer"
+    },
+    "newField": {
+     "type": "cds.LargeString"
+    },
+    "createdAt": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTimeOffset",
+     "@odata.Precision": 7
+    },
+    "createdBy": {
+     "type": "cds.String",
+     "length": 255
+    },
+    "modifyAt": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTimeOffset",
+     "@odata.Precision": 7
+    },
+    "modifyBy": {
+     "type": "cds.String",
+     "length": 255
+    },
+    "books": {
+     "type": "cds.Association",
+     "target": "AdminService.books",
+     "cardinality": {
+      "max": "*"
+     },
+     "keys": []
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0"
+  xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+  xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+  xmlns:sap="http://www.sap.com/Protocols/SAPData">
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml"
+    xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml"
+    xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Validation.V1.xml"
+    xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="Validation" Namespace="Org.OData.Validation.V1"/>
+  </edmx:Reference>
+  <edmx:DataServices m:DataServiceVersion="2.0">
+    <Schema Namespace="AdminService"
+      xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <Annotation Term="Core.Links"
+        xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Collection>
+          <Record>
+            <PropertyValue Property="rel" String="author"/>
+            <PropertyValue Property="href" String="https://cap.cloud.sap"/>
+          </Record>
+        </Collection>
+      </Annotation>
+      <EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true">
+        <EntitySet Name="books" EntityType="AdminService.books"/>
+        <EntitySet Name="authors" EntityType="AdminService.authors"/>
+        <AssociationSet Name="books_author" Association="AdminService.books_author">
+          <End Role="books" EntitySet="books"/>
+          <End Role="authors" EntitySet="authors"/>
+        </AssociationSet>
+      </EntityContainer>
+      <EntityType Name="books">
+        <Key>
+          <PropertyRef Name="ID"/>
+        </Key>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+        <Property Name="title" Type="Edm.String" MaxLength="255"/>
+        <NavigationProperty Name="author" Relationship="AdminService.books_author" FromRole="books" ToRole="authors"/>
+        <Property Name="author_ID" Type="Edm.Guid"/>
+        <Property Name="stock" Type="Edm.Int32"/>
+        <Property Name="price_amount" Type="Edm.Decimal" sap:variable-scale="true"/>
+        <Property Name="price_currency" Type="Edm.String" MaxLength="3"/>
+        <Property Name="genre" Type="Edm.Int32"/>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifyAt" Type="Edm.DateTimeOffset" Precision="7" ConcurrencyMode="Fixed"/>
+        <Property Name="modifyBy" Type="Edm.String" MaxLength="255"/>
+      </EntityType>
+      <EntityType Name="authors">
+        <Key>
+          <PropertyRef Name="ID"/>
+        </Key>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+        <NavigationProperty Name="books" Relationship="AdminService.books_author" FromRole="authors" ToRole="books"/>
+        <Property Name="name" Type="Edm.String"/>
+        <Property Name="dateOfBirth" Type="Edm.DateTime" sap:display-format="Date"/>
+        <Property Name="dateOfDeath" Type="Edm.DateTime" sap:display-format="Date"/>
+        <Property Name="epc_ID" Type="Edm.Int32"/>
+        <Property Name="newField" Type="Edm.String"/>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifyAt" Type="Edm.DateTimeOffset" Precision="7" ConcurrencyMode="Fixed"/>
+        <Property Name="modifyBy" Type="Edm.String" MaxLength="255"/>
+      </EntityType>
+      <Association Name="books_author">
+        <End Role="books" Type="AdminService.books" Multiplicity="*"/>
+        <End Role="authors" Type="AdminService.authors" Multiplicity="0..1"/>
+        <ReferentialConstraint>
+          <Principal Role="authors">
+            <PropertyRef Name="ID"/>
+          </Principal>
+          <Dependent Role="books">
+            <PropertyRef Name="author_ID"/>
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Annotations Target="AdminService.books/ID"
+        xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+      </Annotations>
+      <Annotations Target="AdminService.books/genre"
+        xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Validation.AllowedValues">
+          <Collection>
+            <Record Type="Validation.AllowedValue">
+              <Annotation Term="Core.SymbolicName" String="fiction"/>
+              <PropertyValue Property="Value" Int="1"/>
+            </Record>
+            <Record Type="Validation.AllowedValue">
+              <Annotation Term="Core.SymbolicName" String="no_fiction"/>
+              <PropertyValue Property="Value" Int="2"/>
+            </Record>
+          </Collection>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="AdminService.books/createdAt"
+        xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="AdminService.books/createdBy"
+        xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="AdminService.books/modifyAt"
+        xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="AdminService.books/modifyBy"
+        xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="AdminService.authors/ID"
+        xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+      </Annotations>
+      <Annotations Target="AdminService.authors/name"
+        xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+      </Annotations>
+      <Annotations Target="AdminService.authors/createdAt"
+        xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="AdminService.authors/createdBy"
+        xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="AdminService.authors/modifyAt"
+        xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="AdminService.authors/modifyBy"
+        xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

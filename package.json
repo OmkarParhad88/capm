@@ -15,6 +15,7 @@
     "@sap-cloud-sdk/resilience": "^4.1.1",
     "@sap/cds": "9.1.0",
     "@sap/cds-dk": "^9.2.0",
+    "cdse": "^1.1.12",
     "express": "^4"
   },
   "devDependencies": {
@@ -55,11 +56,9 @@
       },
       "AdminService": {
         "kind": "odata",
-        "model": "srv/external/AdminService",
-        "[development]": {
-          "credentials": {
-            "destination": "invoflow_capm_srv"
-          }
+        "model": "srv/external/AdminService/AdminService",
+        "credentials": {
+          "destination": "invoflow_capm_srv"
         },
         "[production]": {
           "credentials": {
@@ -69,9 +68,9 @@
       },
       "NorthWind": {
         "kind": "odata",
-        "model": "srv/external/NorthWind",
+        "model": "srv/external/NorthWind/NorthWind",
         "credentials": {
-          "url": "https://services.odata.org/Experimental/OData/OData.svc"
+          "destination": "NorthWind"
         },
         "[production]": {
           "credentials": {
@@ -85,7 +84,7 @@
     "#dispatcher": "./@dispatcher/index.js",
     "#cds-models/*": "./@cds-models/*/index.js"
   },
-  "workspaces": [
+  "workspaces": [ 
     "app/*"
   ]
 }
