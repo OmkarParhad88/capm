@@ -19,7 +19,7 @@
     "express": "^4"
   },
   "devDependencies": {
-    "@cap-js/cds-typer": ">=0.1",
+    "@cap-js/cds-typer": "^0.36.0",
     "@cap-js/cds-types": "^0.10.0",
     "@cap-js/sqlite": "^2.0.2",
     "@sap/cds-dk": ">=8",
@@ -31,6 +31,7 @@
     "start": "cds-serve",
     "build": "cds build",
     "build:mta": "mbt build",
+    "build:module": "npx @cap-js/cds-typer '*' --outputDirectory @cds-models",
     "build:deploy": "mbt build && cf deploy mta_archives/capm_ts_1.0.0.mtar",
     "watch-book_shop1": "cds watch --open bookshop1/index.html?sap-ui-xx-viewCache=false --livereload false",
     "undeploy": "cf undeploy capm_ts --delete-services --delete-service-keys --delete-service-brokers",
@@ -58,11 +59,13 @@
         "kind": "odata",
         "model": "srv/external/AdminService/AdminService",
         "credentials": {
-          "destination": "invoflow_capm_srv"
+          "destination": "invoflow_capm_srv",
+          "path": "/odata/v2/admin"
         },
         "[production]": {
           "credentials": {
-            "destination": "invoflow_capm_srv"
+            "destination": "invoflow_capm_srv",
+            "path": "/odata/v2/admin"
           }
         }
       },
@@ -84,7 +87,7 @@
     "#dispatcher": "./@dispatcher/index.js",
     "#cds-models/*": "./@cds-models/*/index.js"
   },
-  "workspaces": [ 
+  "workspaces": [
     "app/*"
   ]
 }

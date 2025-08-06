@@ -9,10 +9,9 @@ service DemoService {
   entity Employees    as projection on db.Employee;
 
   @readonly
-  @cds.persistence.skip
+  
   entity Products     as projection on northwind.Products;
 
-  @cds.persistence.skip
   entity Books        as projection on admin.books;
 
 
