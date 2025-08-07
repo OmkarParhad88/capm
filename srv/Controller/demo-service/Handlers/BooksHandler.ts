@@ -8,7 +8,7 @@ import {
 
 import { Books } from '#cds-models/DemoService';
 
-import BooksService from '../../../Service/BooksService';
+import BooksService from '../../../Logic/BooksService';
 
 @EntityHandler(Books)
 export default class BooksHandler {

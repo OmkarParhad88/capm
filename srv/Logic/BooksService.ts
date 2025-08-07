@@ -1,13 +1,15 @@
 import {
   Request,
   ServiceLogic,
+  Service,
 } from '@dxfrontier/cds-ts-dispatcher';
 import cds from '@sap/cds';
-import type { Books } from '#cds-models/DemoService';
+import type { Books  } from '#cds-models/DemoService';
+import AdminService  from '#cds-models/AdminService';
 
 @ServiceLogic()
 export default class BooksService {
-  private AdminService: any ;
+  private AdminService: Service<AdminService>;
   constructor() {
     this.readAdminService();
   }
@@ -16,7 +18,6 @@ export default class BooksService {
   }
 
   public async getBooks(req: Request<Books>): Promise<Books[]> {
-    console.log('****************** On read event Books');
     let data = await this.AdminService.run(req.query);
     console.log('****************** On read event Books ', data);
     return data;

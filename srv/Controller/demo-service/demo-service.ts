@@ -1,8 +1,8 @@
 import { CDSDispatcher } from '@dxfrontier/cds-ts-dispatcher';
-import CommoditiesHandler from './Handler/CommoditiesHandler';
-import UnBoundActionsHandler from './Handler/UnBoundActionsHandler';
-import ProductsHandler from './Handler/ProductsHandler';
-import BooksHandler from './Handler/BooksHandler';
+import CommoditiesHandler from './Handlers/CommoditiesHandler';
+import UnBoundActionsHandler from './Handlers/UnBoundActionsHandler';
+import ProductsHandler from './Handlers/ProductsHandler';
+import BooksHandler from './Handlers/BooksHandler';
 
 module.exports = new CDSDispatcher([
   CommoditiesHandler,

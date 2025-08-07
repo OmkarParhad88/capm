@@ -8,12 +8,7 @@ service DemoService {
   entity Plants       as projection on db.Plant;
   entity Employees    as projection on db.Employee;
 
-  @readonly
-  
   entity Products     as projection on northwind.Products;
-
   entity Books        as projection on admin.books;
-
-
   function checkData() returns {};
 }

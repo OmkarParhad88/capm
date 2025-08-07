@@ -3,11 +3,12 @@ import {
   EntityHandler,
   Inject,
   OnRead,
-  Request,
+  Request
 } from '@dxfrontier/cds-ts-dispatcher';
 
-import {Products } from '#cds-models/DemoService';
-import ProductsService from '../../../Service/ProductsService';
+import { Products } from '#cds-models/DemoService';
+
+import ProductsService from '../../../Logic/ProductsService';
 
 @EntityHandler(Products)
 export default class ProductsHandler {

@@ -2,12 +2,11 @@
 import {
   AfterRead,
   EntityHandler,
-  Inject,
-  OnRead,
+  Inject
 } from '@dxfrontier/cds-ts-dispatcher';
 
 import { Commodities } from '#cds-models/DemoService';
-import CommoditiesService from '../../../Service/CommoditiesService';
+import CommoditiesService from '../../../Logic/CommoditiesService';
 
 @EntityHandler(Commodities)
 export default class CommoditiesHandler {
