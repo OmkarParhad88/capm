@@ -15,8 +15,11 @@
     "@sap-cloud-sdk/resilience": "^4.1.1",
     "@sap/cds": "9.1.0",
     "@sap/cds-dk": "^9.2.0",
+    "axios": "^1.11.0",
     "cdse": "^1.1.12",
-    "express": "^4"
+    "express": "^4",
+    "imapflow": "^1.0.193",
+    "mailparser": "^3.7.4"
   },
   "devDependencies": {
     "@cap-js/cds-typer": "^0.36.0",
@@ -31,7 +34,7 @@
     "start": "cds-serve",
     "build": "cds build",
     "build:mta": "mbt build",
-    "build:module": "npx @cap-js/cds-typer '*' --outputDirectory @cds-models",
+    "build:module": "npx @cap-js/cds-typer srv , db --outputDirectory @cds-models",
     "build:deploy": "mbt build && cf deploy mta_archives/capm_ts_1.0.0.mtar",
     "watch-book_shop1": "cds watch --open bookshop1/index.html?sap-ui-xx-viewCache=false --livereload false",
     "undeploy": "cf undeploy capm_ts --delete-services --delete-service-keys --delete-service-brokers",
@@ -40,6 +43,10 @@
     "watch-demo_ui5": "cds watch --open demoui5/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "cds": {
+    "folders": {
+      "db": "db",
+      "srv": "srv"
+    },
     "plugins": [],
     "requires": {
       "auth": {
@@ -78,6 +85,28 @@
         "[production]": {
           "credentials": {
             "destination": "NorthWind"
+          }
+        }
+      },
+      "BuildProcess": {
+        "kind": "rest",
+        "credentials": {
+          "destination": "sap_process_automation_dest"
+        },
+        "[production]": {
+          "credentials": {
+            "destination": "sap_process_automation_dest"
+          }
+        }
+      },
+      "DocInfoExtraction": {
+         "kind": "rest",
+        "credentials": {
+          "destination": "sap_doc_info_extract_dest"
+        },
+        "[production]": {
+          "credentials": {
+            "destination": "sap_doc_info_extract_dest"
           }
         }
       }
