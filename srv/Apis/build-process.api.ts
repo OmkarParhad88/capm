@@ -21,22 +21,15 @@ export default class BuildProcessApis {
   async WorkflowTrigger(data: InvoiceOutput) {
     let payload = {
       "definitionId": "us10.080aac49trial.apitrigger.invoiceDetailsProcessing",
-      "context": {
-        ...data
-      }
+      "context": { ...data }
     }
 
     try {
-
-      const response = await this.buildProcess.send('POST', '/v1/workflow-instances', JSON.stringify(payload), {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
+      const response = await this.buildProcess.send('POST', '/v1/workflow-instances', JSON.stringify(payload), { headers: { 'Content-Type': 'application/json' } });
       return response;
-    } catch (error) {
-      console.log(error);
-      return error;
-    }
+     } catch (error: any) {
+        console.log(error);
+        return error.reason.response.body;
+      }
   }
 }

@@ -1,14 +1,21 @@
 service InvoiceFlowService {
-  function job() returns array of  Product;
+  function job() returns array of   WorkflowTriggerResponse;
   function capabilities() returns LargeString;
 }
 
-type Product : {
-  ID                : Integer;
-  Name              : String;
-  Description       : String;
-  ReleaseDate       : DateTime;
-  DiscontinuedDate  : DateTime;
-  Rating            : Integer;
-  Price             : Decimal(10,2);
+ type WorkflowTriggerResponse : {
+  id: String;
+  definitionId: String;
+  definitionVersion: String;
+  subject: String;
+  status: String;
+  startedAt: String; 
+  startedBy: String;
+  completedAt: String;
+  businessKey: String ;
+  parentInstanceId: String;
+  rootInstanceId: String;
+  applicationScope: String;
+  projectId: String;
+  projectVersion: String;
 };

@@ -24,12 +24,12 @@ export default class DocInfoExtractionApis {
     try {
       const response = await this.docInfoExtraction.send('GET', '/capabilities');
       return response;
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
-      return error;
+      return error.reason.response.body;
     }
-
   }
+
   async uploadDocument(attachments: attachments[]){
     let responseArray: DocJobResponse[] = []
     for (const attachment of attachments) {
@@ -43,11 +43,10 @@ export default class DocInfoExtractionApis {
         const response = this.docInfoExtraction.send('POST', '/document/jobs', formData, {
           headers: formData.getHeaders()
         });
-        console.log(response);
         responseArray.push(response);
-      } catch (error) {
+      } catch (error: any) {
         console.log(error);
-        return error;
+        return error.reason.response.body;
       }
     }
     return responseArray
@@ -57,9 +56,9 @@ export default class DocInfoExtractionApis {
     try {
       const response = await this.docInfoExtraction.send('GET','/document/jobs/' + jobId);
       return response;
-    } catch (error) {
-      console.log(error);
-      return error;
-    }
+     } catch (error: any) {
+        console.log(error);
+        return error.reason.response.body;
+      }
   }
 };

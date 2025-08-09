@@ -3,7 +3,7 @@ import { simpleParser } from 'mailparser';
 import { attachments, GmailMessage } from '../Types/Gamil';
 import { bufferToFilePath } from '../Utils';
 
-export class GmailApis {
+export default class GmailApis {
 
 
   public async fetchLatestEmailAttachments(): Promise<GmailMessage[]> {
