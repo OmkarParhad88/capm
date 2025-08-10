@@ -91,22 +91,26 @@
       "BuildProcess": {
         "kind": "rest",
         "credentials": {
-          "destination": "sap_process_automation_dest"
+          "destination": "sap_process_automation_dest",
+          "requestTimeout": 10000
         },
         "[production]": {
           "credentials": {
-            "destination": "sap_process_automation_dest"
+            "destination": "sap_process_automation_dest",
+            "requestTimeout": 10000
           }
         }
       },
       "DocInfoExtraction": {
-         "kind": "rest",
+        "kind": "rest",
         "credentials": {
-          "destination": "sap_doc_info_extract_dest"
+          "destination": "sap_doc_info_extract_dest",
+          "requestTimeout": 10000
         },
         "[production]": {
           "credentials": {
-            "destination": "sap_doc_info_extract_dest"
+            "destination": "sap_doc_info_extract_dest",
+            "requestTimeout": 10000
           }
         }
       }

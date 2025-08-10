@@ -40,9 +40,9 @@ export default class DocInfoExtractionApis {
       formData.append('options', JSON.stringify({ "clientId": "default", "schemaName": "SAP_invoice_schema" }));
 
       try {
-        const response = this.docInfoExtraction.send('POST', '/document/jobs', formData, {
+        const response = await this.docInfoExtraction.send('POST', '/document/jobs', formData, {
           headers: formData.getHeaders()
-        });
+        } );
         responseArray.push(response);
       } catch (error: any) {
         console.log(error);
