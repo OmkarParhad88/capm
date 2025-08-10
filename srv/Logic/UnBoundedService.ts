@@ -2,8 +2,12 @@ import {
   Request,
   ServiceLogic,
   Inject,
+  CatchAndSetErrorMessage,
+  Error,
+  Req
+} from '@dxfrontier/cds-ts-dispatcher';
+import type {
   ActionReturn,
-  CatchAndSetErrorMessage
 } from '@dxfrontier/cds-ts-dispatcher';
 import NorthWindApis from '../Apis/northwind.api';
 import DocInfoExtractionApis from '../Apis/doc-info-exta.api';
@@ -85,7 +89,12 @@ export default class UnBoundedService {
   }
 
   
-  public async getCapabilities(): ActionReturn<typeof capabilities> {
-    return await this.docInfoExtractionApis.capabilities();
+  public async getCapabilities(@Req() req: Request): ActionReturn<typeof capabilities> {
+    try {
+      return await this.docInfoExtractionApis.capabilities();
+      
+    } catch (error:any) {
+      return error.reason.response.body
+    }
   }
 }

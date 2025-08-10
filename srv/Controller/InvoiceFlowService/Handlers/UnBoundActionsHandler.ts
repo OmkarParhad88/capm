@@ -33,8 +33,8 @@ export default class UnBoundActionsHandler {
   @OnFunction('capabilities')
   // @CatchAndSetErrorCode('BAD_REQUEST-400')
   // @CatchAndSetErrorMessage('User data could not be retrieved', 'NOT_FOUND-404') 
-  private async capabilities(): ActionReturn<typeof capabilities> {
-    return await this.unBoundedService.getCapabilities();
+  private async capabilities(@Req() req: Request): ActionReturn<typeof capabilities> {
+    return await this.unBoundedService.getCapabilities( req);
   }
 
   @OnError()
