@@ -4,8 +4,6 @@ import { attachments, GmailMessage } from '../Types/Gamil';
 import { bufferToFilePath } from '../Utils';
 
 export default class GmailApis {
-
-
   public async fetchLatestEmailAttachments(): Promise<GmailMessage[]> {
     const result: GmailMessage[] = []
     const client = new ImapFlow({

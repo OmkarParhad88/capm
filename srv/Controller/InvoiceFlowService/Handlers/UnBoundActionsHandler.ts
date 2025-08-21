@@ -15,7 +15,6 @@ import {
 
 import type {
   ActionReturn,
-  ActionRequest,
 } from '@dxfrontier/cds-ts-dispatcher';
 import { job, capabilities } from '#cds-models/InvoiceFlowService';
 
@@ -24,17 +23,19 @@ import UnBoundedService from '../../../Logic/UnBoundedService';
 @UnboundActions()
 export default class UnBoundActionsHandler {
   @Inject(UnBoundedService)
-  private readonly unBoundedService: UnBoundedService;
+  private unBoundedService: UnBoundedService;
 
   @OnFunction('job')
+  // @CatchAndSetErrorCode('BAD_REQUEST-400')
   private async job(): ActionReturn<typeof job> {
     return await this.unBoundedService.doJob();
   }
+
   @OnFunction('capabilities')
   // @CatchAndSetErrorCode('BAD_REQUEST-400')
-  // @CatchAndSetErrorMessage('User data could not be retrieved', 'NOT_FOUND-404') 
   private async capabilities(@Req() req: Request): ActionReturn<typeof capabilities> {
-    return await this.unBoundedService.getCapabilities( req);
+    let res = await this.unBoundedService.getCapabilities(req);
+    return res
   }
 
   @OnError()
@@ -43,6 +44,5 @@ export default class UnBoundActionsHandler {
       console.log(err.name);
     }
   }
-
 
 }

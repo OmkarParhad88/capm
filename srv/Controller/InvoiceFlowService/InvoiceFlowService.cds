@@ -1,6 +1,6 @@
 service InvoiceFlowService {
-  function job() returns array of   WorkflowTriggerResponse;
-  function capabilities() returns LargeString;
+  function job() returns array of  WorkflowTriggerResponse;
+  function capabilities() returns Map;
 }
 
  type WorkflowTriggerResponse : {
